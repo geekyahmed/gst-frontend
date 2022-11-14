@@ -1,0 +1,84 @@
+{
+  "name": "gst-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/vue-fontawesome": "^0.1.7",
+    "@sentry/tracing": "^6.2.5",
+    "@vueup/vue-quill": "^1.0.0-alpha.1",
+    "algoliasearch": "^4.8.6",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "chart.js": "^2.9.4",
+    "cloudinary-vue": "^1.1.2",
+    "core-js": "^2.6.5",
+    "emailjs-com": "^2.6.4",
+    "jquery": "^3.4.1",
+    "js-cookie": "^2.2.1",
+    "jwt-decode": "^3.1.2",
+    "popper.js": "^1.15.0",
+    "quill-image-uploader": "^1.2.2",
+    "spa-prerenderer": "^1.0.1",
+    "vee-validate": "^2.2.15",
+    "vue-cookie-law": "^1.13.3",
+    "vue-cookies": "^1.7.4",
+    "vue-image-upload-resize": "^2.3.0",
+    "vue-jwt-decode": "^0.1.0",
+    "vue-loading-skeleton": "^1.1.9",
+    "vue-moment": "^4.1.0",
+    "vue-multiselect": "^2.1.6",
+    "vue-page-transition": "^0.2.2",
+    "vue-ravepayment": "^2.0.2",
+    "vue-router": "^3.0.3",
+    "vue-upload-component": "^2.8.22",
+    "vue-wysiwyg": "^1.7.2",
+    "vue2-editor": "^2.10.3",
+    "vue2-perfect-scrollbar": "^1.5.0",
+    "vuejs-medium-editor": "^1.2.1",
+    "vuejs-noty": "^0.1.3",
+    "vuejs-progress-bar": "^1.2.4",
+    "vuetable-2": "^1.3.1",
+    "vuex": "^3.0.1",
+    "vuex-persist": "^3.1.3"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^4.5.12",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-cli-plugin-prerender-spa": "~1.1.6",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
