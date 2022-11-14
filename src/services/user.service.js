@@ -14,10 +14,10 @@ class UserService {
   createUser(data) {
     return APIService.postWithAuth('users', data);
   }
-  updateProfile(id, data) {
+  updateUser(id, data) {
     return APIService.putWithAuth(`users/${id}`, data);
   }
-  deleteProfile(id) {
+  deleteUser(id) {
     return APIService.deleteWithAuth(`users/${id}`);
   }
 }
