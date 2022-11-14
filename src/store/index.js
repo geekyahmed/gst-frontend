@@ -4,9 +4,6 @@ import Vuex from 'vuex';
 
 import { auth } from './modules/auth.module';
 import { user } from './modules/user.module';
-import { post } from './modules/post.module';
-import { category } from './modules/category.module';
-
 import VuexPersist from 'vuex-persist'
 
 Vue.use(Vuex);
@@ -21,8 +18,6 @@ export default new Vuex.Store({
   plugins: [vuexLocalStorage.plugin],
   modules: {
     auth,
-    category,
-    post,
     user,
   }
 });

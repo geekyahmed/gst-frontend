@@ -2,7 +2,6 @@ import APIService from './api/api.service';
 
 class UserService {
   getUsers() {
-    console.log('Gize')
     return APIService.getWithAuth('users');
   }
   getUser() {

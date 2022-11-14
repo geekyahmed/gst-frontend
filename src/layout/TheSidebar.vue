@@ -17,21 +17,21 @@
         </li>
 
         <li class="sidebar-item">
-          <router-link to="/users" class="sidebar-link">
+          <router-link to="/users" class="sidebar-link" v-if="admin">
             <i class="align-middle" data-feather="sliders"></i>
             <span class="align-middle" v-on:click="closeBar()">Users</span>
           </router-link>
         </li>
 
         <li class="sidebar-item">
-          <router-link to="/timetable" class="sidebar-link">
+          <router-link to="/timetables" class="sidebar-link">
             <i class="align-middle" data-feather="sliders"></i>
             <span class="align-middle" v-on:click="closeBar()">Timetable</span>
           </router-link>
         </li>
 
-        <li class="sidebar-item">
-          <router-link to="/results" class="sidebar-link">
+        <li>
+          <router-link to="/results" class="sidebar-link" v-if="!lecturer">
             <i class="align-middle" data-feather="sliders"></i>
             <span class="align-middle" v-on:click="closeBar()">Results</span>
           </router-link>
@@ -116,13 +116,21 @@ export default {
     ...mapGetters({
       user: 'user/user',
       loggedIn: 'auth/loggedIn'
-    })
+    }),
+    student() {
+      if (this.currentUser.role === 'student') {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
   mounted() {
     console.log(this.loggedIn);
   },
   methods: {
     closeBar() {
+      console.log(this.currentUser.role)
       let element = document.getElementById('sidebar');
       element.classList.remove('collapsed');
     },

@@ -42,9 +42,6 @@
                 loggedIn: 'auth/loggedIn'
             })
         },
-        mounted(){
-            console.log(this.user)
-        },
         methods: {
             logOut() {
                 this.$store.dispatch('auth/LOGOUT')
