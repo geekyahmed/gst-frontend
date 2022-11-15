@@ -37,7 +37,7 @@ export default {
     axios.interceptors.response.use(undefined, function(err) {
       return new Promise(function(resolve, reject) {
         if (
-          err.response.status === 401 &&
+          // err.response.status === 401 &&
           err.config &&
           !err.config.__isRetryRequest
         ) {

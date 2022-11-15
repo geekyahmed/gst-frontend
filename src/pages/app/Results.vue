@@ -1,30 +1,19 @@
 <template>
   <main class="content" data-view>
     <!-- Modal -->
-    <div
-      class="modal fade"
-      id="userPreviewModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="userPreviewModal"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="userPreviewModal" tabindex="-1" role="dialog" aria-labelledby="userPreviewModal"
+      aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">
               Result Details
             </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body capitalize">
             <p>
               Course:
               <strong>{{ resultInfo.course }}</strong>
@@ -41,26 +30,17 @@
               Status:
               <strong>{{ resultInfo.status }}</strong>
             </p>
-            <!-- <p>
-              Student:
-              <strong>{{ resultInfo.student.name }}</strong>
-            </p> -->
+            <p>
+              Student Id:
+              <strong>{{ resultInfo.student }}</strong>
+            </p>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-target="#editResultModal"
-              @click="getData(resultInfo._id)"
-            >
+          <div class="modal-footer" v-if="admin">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editResultModal"
+              @click="getData(resultInfo._id)">
               Edit
             </button>
-            <button
-              type="button"
-              class="btn btn-success"
-              @click="deleteResult(resultInfo._id)"
-            >
+            <button type="button" class="btn btn-success" @click="deleteResult(resultInfo._id)">
               Delete
             </button>
           </div>
@@ -69,14 +49,8 @@
     </div>
 
     <!-- Modal -->
-    <div
-      class="modal fade"
-      id="editResultModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="editResultModal"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="editResultModal" tabindex="-1" role="dialog" aria-labelledby="editResultModal"
+      aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <form method="PUT" name="form" @submit.prevent="updateResult">
@@ -84,12 +58,7 @@
               <h5 class="modal-title" id="exampleModalLongTitle">
                 Update Result
               </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -97,54 +66,29 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Course</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="result.course"
-                    placeholder="Type course name here"
-                  />
+                  <input type="text" class="form-control" v-model="result.course" placeholder="Type course name here" />
                 </div>
                 <div class="form-group">
-                  <label>Course</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    v-model="result.score"
-                    placeholder="Type course score here"
-                  />
+                  <label>Score</label>
+                  <input type="number" class="form-control" v-model="result.score"
+                    placeholder="Type course score here" />
                 </div>
                 <div class="form-group">
                   <label>Grade:</label>
-                  <multiselect
-                    v-model="result.grade"
-                    :options="grades"
-                    placeholder="Select grade"
-                  />
+                  <multiselect v-model="result.grade" :options="grades" placeholder="Select grade" />
                 </div>
                 <div class="form-group">
                   <label>Status:</label>
-                  <multiselect
-                    v-model="result.status"
-                    :options="statuses"
-                    placeholder="Select status"
-                  />
+                  <multiselect v-model="result.status" :options="statuses" placeholder="Select status" />
                 </div>
                 <div class="form-group">
-                  <label>Status:</label>
-                  <multiselect
-                    v-model="result.student"
-                    :options="users"
-                    placeholder="Select student id"
-                  />
+                  <label>Student:</label>
+                  <multiselect v-model="result.student" :options="users" placeholder="Select student id" />
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 Close
               </button>
               <button type="submit" class="btn btn-primary">
@@ -157,14 +101,8 @@
     </div>
 
     <!-- Modal -->
-    <div
-      class="modal fade"
-      id="createResultModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="createResultModal"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="createResultModal" tabindex="-1" role="dialog" aria-labelledby="createResultModal"
+      aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <form method="POST" name="form" @submit.prevent="createResult">
@@ -172,12 +110,7 @@
               <h5 class="modal-title" id="exampleModalLongTitle">
                 Create Result
               </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -185,54 +118,29 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Course</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="result.course"
-                    placeholder="Type course name here"
-                  />
+                  <input type="text" class="form-control" v-model="result.course" placeholder="Type course name here" />
                 </div>
                 <div class="form-group">
-                  <label>Course</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    v-model="result.score"
-                    placeholder="Type course score here"
-                  />
+                  <label>Score</label>
+                  <input type="number" class="form-control" v-model="result.score"
+                    placeholder="Type course score here" />
                 </div>
                 <div class="form-group">
                   <label>Grade:</label>
-                  <multiselect
-                    v-model="result.grade"
-                    :options="grades"
-                    placeholder="Select grade"
-                  />
+                  <multiselect v-model="result.grade" :options="grades" placeholder="Select grade" />
                 </div>
                 <div class="form-group">
                   <label>Status:</label>
-                  <multiselect
-                    v-model="result.status"
-                    :options="statuses"
-                    placeholder="Select status"
-                  />
+                  <multiselect v-model="result.status" :options="statuses" placeholder="Select status" />
                 </div>
                 <div class="form-group">
-                  <label>Status:</label>
-                  <multiselect
-                    v-model="result.student"
-                    :options="users"
-                    placeholder="Select student id"
-                  />
+                  <label>Student:</label>
+                  <multiselect v-model="result.student" :options="users" placeholder="Select student id" />
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 Close
               </button>
               <button type="submit" class="btn btn-primary">
@@ -259,43 +167,9 @@
                 <h4 class="text-center mt-4" v-if="results === []">
                   You currently don't have any results
                 </h4>
-                <ul
-                  class="user-list"
-                  v-for="result in results"
-                  :key="result._id"
-                >
-                  <li class="single-user-list">
-                    <div class="mr-5 info">
-                      <div class="details">
-                        <h5 class="user-name capitalize">
-                          {{ result.course }}
-                        </h5>
-                        <h5>{{ result.score }}</h5>
-                        <h5>{{ result.grade }}</h5>
-                        <h5>{{ result.status }}</h5>
-                        <!-- <h5>{{ result.student.name }}</h5> -->
-                      </div>
-                    </div>
-
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#userPreviewModal"
-                      @click="getResultInfo(result._id)"
-                    >
-                      View Info
-                    </button>
-                  </li>
-                </ul>
                 <div class="mb-1" v-if="admin">
                   <span>
-                    <button
-                      type="button"
-                      class="btn-info"
-                      data-toggle="modal"
-                      data-target="#createResultModal"
-                    >
+                    <button type="button" class="btn-info" data-toggle="modal" data-target="#createResultModal">
                       Create Result
                     </button>
                   </span>
@@ -304,34 +178,36 @@
             </div>
           </div>
 
-          <!-- <div class="col-sm-12 col-lg-12 col-xl-12 mb-20">
-            <div class="card">
-              <div class="card-body">
-                <p>
-                  Results :
-                  <strong>{{ results.length }}</strong>
-                </p>
-                <h4 class="text-center mt-4" v-if="results === []">
-                  You currently don't have any results
-                </h4>
-                <ul
-                  class="user-list"
-                  v-for="result in results"
-                  :key="result.id"
-                >
-                  <li class="single-user-list">
-                    <div class="mr-5 info">
-                      <div class="details">
-                        <h5 class="user-name capitalize">
-                          {{ result.course }}
-                        </h5>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-hover table-dark capitalize">
+                <thead>
+                  <tr>
+                    <th scope="col">Course</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Grade</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Student Id</th>
+                  </tr>
+                </thead>
+                <tbody v-for="result in results" :key="result._id">
+                  <tr>
+                    <td>{{ result.course }}</td>
+                    <td>{{ result.score }}</td>
+                    <td>{{ result.grade }}</td>
+                    <td>{{ result.status }}</td>
+                    <td>{{ result.student }}</td>
+                    <td>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userPreviewModal"
+                        @click="getResultInfo(result._id)">
+                        View Info
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </section>

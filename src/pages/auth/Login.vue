@@ -13,10 +13,6 @@
     <div class="main-form" data-view>
       <form method="post" name="form" @submit.prevent="handleLogin">
         <h4 class="text-center color-blue">Sign In To Your Account</h4>
-        <div class="illustration">
-          <img src="/logo.png" height="70px" alt="">
-        </div>
-
         <div class="form-group">
           <input class="form-control" v-model="user.email" v-validate="'required'" type="email" name="email"
             placeholder="Your Email">
