@@ -273,6 +273,33 @@
               </div>
             </div>
           </div>
+          
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-hover table-dark capitalize">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                  </tr>
+                </thead>
+                <tbody v-for="user in users" :key="user._id">
+                  <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userPreviewModal"
+                        @click="getUserInfo(user._id)">
+                        View Info
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
           <div class="col-sm-12 col-lg-12 col-xl-12 mb-20">
             <div class="card">
