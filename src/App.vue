@@ -33,26 +33,6 @@ export default {
     axios.interceptors.request.use(config => {
       return config;
     });
-
-    axios.interceptors.response.use(undefined, function(err) {
-      return new Promise(function(resolve, reject) {
-        if (
-          // err.response.status === 401 &&
-          err.config &&
-          !err.config.__isRetryRequest
-        ) {
-          vm.$store.dispatch('auth/LOGOUT');
-
-          vm.$router.push('/login');
-        }
-
-        if (err.response.status === 429) {
-          vm.$noty.error('Too many request! Please try again');
-        }
-
-        throw err.response;
-      });
-    });
   },
   metaInfo: {
     title: 'Tribinnov Africa - Dashboard'
